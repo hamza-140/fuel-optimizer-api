@@ -1,0 +1,25 @@
+{
+  "info": {
+    "name": "Spotter Fuel Optimizer",
+    "description": "Spotter fuel route optimizer: health check + NYC→Chicago optimize demo. Expect routing_api_calls=1, fuel stops, and estimated_total_cost_usd.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health check",
+      "request": {"method": "GET", "header": [], "url": {"raw": "{{base_url}}/health/", "host": ["{{base_url}}"], "path": ["health", ""]}},
+      "response": []
+    },
+    {
+      "name": "Optimize route",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"start\": \"New York, NY, USA\",\n  \"finish\": \"Chicago, IL, USA\",\n  \"max_range_miles\": 500,\n  \"mpg\": 10,\n  \"station_corridor_miles\": 15\n}", "options": {"raw": {"language": "json"}}},
+        "url": {"raw": "{{base_url}}/api/v1/route/optimize/", "host": ["{{base_url}}"], "path": ["api", "v1", "route", "optimize", ""]}
+      },
+      "response": []
+    }
+  ],
+  "variable": [{"key": "base_url", "value": "http://127.0.0.1:8000"}]
+}
